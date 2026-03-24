@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>小芬化妆品集合店</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #faf7f4;
+  --warm-white: #fff9f5;
+  --blush: #f2c4b2;
+  --rose: #d4856a;
+  --deep-rose: #b5604a;
+  --mauve: #c9a0a0;
+  --brown: #6b4c3b;
+  --text: #2c1f1a;
+  --text-mid: #7a5c52;
+  --text-light: #b09088;
+  --border: rgba(180,130,110,0.18);
+  --gold: #c9a86c;
+  --gold-light: rgba(201,168,108,0.15);
+  --shadow: 0 4px 24px rgba(100,50,30,0.08);
+  --shadow-lg: 0 12px 48px rgba(100,50,30,0.14);
+  --r: 18px;
+  --r-sm: 10px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+body {
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'Noto Sans SC', sans-serif;
+  min-height: 100vh;
+  padding-bottom: 120px;
+}
+
+/* ── DECORATIVE BG ── */
+body::before {
+  content: '';
+  position: fixed; top: 0; left: 0; right: 0; height: 320px;
+  background: linear-gradient(160deg, #fdeee6 0%, #f9efe8 40%, #faf7f4 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── HEADER ── */
+.header {
+  position: relative; z-index: 10;
+  padding: 36px 24px 24px;
+  text-align: center;
+}
+.header-eyebrow {
+  font-size: 10px; letter-spacing: 3px; color: var(--gold);
+  font-weight: 500; text-transform: uppercase; margin-bottom: 10px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.header-eyebrow::before, .header-eyebrow::after {
+  content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
+}
+.header-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 26px; font-weight: 700; color: var(--brown);
+  line-height: 1.3; letter-spacing: 1px; margin-bottom: 6px;
+}
+.header-sub {
+  font-size: 12px; color: var(--text-light); font-weight: 300; letter-spacing: 1px;
+}
+
+/* ── GREETING ── */
+.greeting-card {
+  margin: 0 20px 24px;
+  background: white;
+  border-radius: var(--r);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  position: relative; z-index: 1;
+  display: flex; align-items: flex-start; gap: 12px;
+  animation: slideIn 0.5s ease;
+}
+.greeting-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blush), var(--rose));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.greeting-text { flex: 1; }
+.greeting-name { font-size: 14px; font-weight: 700; color: var(--brown); margin-bottom: 4px; }
+.greeting-msg { font-size: 13px; color: var(--text-mid); line-height: 1.7; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── MAIN CONTENT ── */
+.content { padding: 0 20px; position: relative; z-index: 1; }
+
+/* ── STEP INDICATOR ── */
+.step-indicator {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; margin-bottom: 20px;
+}
+.step-pip {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--border); transition: all 0.3s;
+}
+.step-pip.active { background: var(--rose); width: 24px; border-radius: 4px; }
+.step-pip.done { background: var(--gold); }
+
+/* ── SECTION ── */
+.section-title {
+  font-size: 11px; letter-spacing: 2px; color: var(--text-light);
+  font-weight: 500; text-transform: uppercase; margin-bottom: 10px;
+  padding-left: 2px;
+}
+
+/* ── UPLOAD ── */
+.upload-area {
+  background: white;
+  border: 2px dashed var(--blush);
+  border-radius: var(--r);
+  padding: 36px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: var(--shadow);
+  position: relative; overflow: hidden;
+  margin-bottom: 14px;
+}
+.upload-area.has-photo {
+  border-style: solid; border-color: var(--rose); padding: 0;
+}
+.upload-area:active { transform: scale(0.99); border-color: var(--rose); }
+.upload-icon-wrap {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: linear-gradient(135deg, #fdeee6, #f9e0d4);
+  margin: 0 auto 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+}
+.upload-main-text {
+  font-size: 17px; font-weight: 600; color: var(--brown);
+  font-family: 'Noto Serif SC', serif; margin-bottom: 6px;
+}
+.upload-sub-text { font-size: 12px; color: var(--text-light); line-height: 1.6; }
+.upload-preview { width: 100%; border-radius: 16px; display: none; max-height: 320px; object-fit: cover; }
+.upload-preview.show { display: block; }
+.reshot-btn {
+  position: absolute; bottom: 14px; right: 14px;
+  background: rgba(255,255,255,0.92); color: var(--brown);
+  border: 1px solid var(--border); border-radius: 20px;
+  padding: 7px 16px; font-size: 12px; font-weight: 500;
+  cursor: pointer; font-family: inherit; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+input[type=file] { display: none; }
+
+/* ── DETECT BUBBLE ── */
+.detect-bubble {
+  background: white; border-radius: var(--r);
+  padding: 16px 18px; box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  display: none; margin-bottom: 14px;
+  animation: slideIn 0.4s ease;
+}
+.detect-bubble.show { display: block; }
+.detect-bubble-top {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 0;
+}
+.detect-icon-big { font-size: 36px; }
+.detect-info { flex: 1; }
+.detect-product-name { font-size: 16px; font-weight: 700; color: var(--brown); font-family: 'Noto Serif SC', serif; }
+.detect-product-type { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+.detect-tag {
+  background: var(--gold-light); color: var(--gold);
+  border: 1px solid rgba(201,168,108,0.3);
+  border-radius: 20px; padding: 4px 12px; font-size: 11px; font-weight: 700;
+}
+
+/* ── GUIDE BUBBLE ── */
+.guide-bubble {
+  background: linear-gradient(135deg, #fff5f0, #fff8f5);
+  border: 1px solid rgba(212,133,106,0.25);
+  border-radius: var(--r);
+  padding: 16px 18px;
+  display: none; margin-bottom: 14px;
+  animation: slideIn 0.4s ease;
+  position: relative;
+}
+.guide-bubble.show { display: flex; gap: 12px; }
+.guide-bubble-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blush), var(--rose));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.guide-bubble-content { flex: 1; }
+.guide-bubble-name { font-size: 11px; color: var(--rose); font-weight: 700; margin-bottom: 5px; letter-spacing: 0.5px; }
+.guide-bubble-text { font-size: 13px; color: var(--text); line-height: 1.75; }
+
+/* ── EXTRA UPLOAD ── */
+.extra-upload {
+  border: 2px dashed rgba(212,133,106,0.35);
+  border-radius: var(--r);
+  padding: 22px 20px;
+  text-align: center;
+  cursor: pointer;
+  background: rgba(253,238,230,0.4);
+  display: none; margin-bottom: 10px;
+  transition: all 0.25s;
+}
+.extra-upload.show { display: block; }
+.extra-upload:active { background: rgba(253,238,230,0.7); }
+.extra-preview { width: 100%; border-radius: 12px; margin-top: 10px; display: none; }
+.extra-preview.show { display: block; }
+.extra-icon { font-size: 28px; margin-bottom: 8px; }
+.extra-label { font-size: 14px; color: var(--rose); font-weight: 600; }
+.extra-sub { font-size: 11px; color: var(--text-light); margin-top: 3px; }
+
+.skip-text {
+  text-align: center; font-size: 12px; color: var(--text-light);
+  padding: 8px 0 4px; cursor: pointer; display: none;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+
+/* ── VOICE INPUT ── */
+.voice-section { margin-bottom: 4px; }
+.voice-card {
+  background: white; border-radius: var(--r);
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.voice-card-top {
+  padding: 14px 16px 0;
+  display: flex; align-items: center; gap: 10px;
+}
+.voice-hint { font-size: 12px; color: var(--text-light); line-height: 1.6; flex: 1; }
+.mic-btn {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blush), var(--rose));
+  border: none; display: flex; align-items: center; justify-content: center;
+  font-size: 22px; cursor: pointer; flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(212,133,106,0.35);
+  transition: all 0.2s;
+}
+.mic-btn.recording {
+  animation: micPulse 1.2s ease-in-out infinite;
+  background: linear-gradient(135deg, var(--rose), var(--deep-rose));
+}
+@keyframes micPulse {
+  0%,100% { box-shadow: 0 4px 14px rgba(180,80,60,0.35); transform: scale(1); }
+  50% { box-shadow: 0 4px 24px rgba(180,80,60,0.6); transform: scale(1.06); }
+}
+.voice-textarea {
+  width: 100%; background: none; border: none; outline: none;
+  color: var(--text); font-family: inherit; font-size: 13px;
+  line-height: 1.75; resize: none; padding: 12px 16px 14px;
+  min-height: 80px;
+}
+.voice-textarea::placeholder { color: var(--text-light); }
+
+/* ── BOTTOM BAR ── */
+.bottom-bar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  padding: 14px 20px 28px;
+  background: linear-gradient(to top, var(--cream) 70%, transparent);
+}
+.generate-btn {
+  width: 100%; padding: 17px;
+  background: linear-gradient(135deg, var(--rose), var(--deep-rose));
+  border: none; border-radius: 50px;
+  color: white; font-family: 'Noto Serif SC', serif;
+  font-size: 16px; font-weight: 600; letter-spacing: 1px;
+  cursor: pointer; box-shadow: 0 8px 28px rgba(180,80,60,0.35);
+  transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.generate-btn:active { transform: scale(0.98); }
+.generate-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* ── RESULT PAGE ── */
+#page2 { display: none; }
+
+.result-hero {
+  text-align: center; padding: 20px 0 28px;
+}
+.result-emoji { font-size: 56px; margin-bottom: 10px; display: block; }
+.result-name {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 24px; font-weight: 700; color: var(--brown);
+  margin-bottom: 8px;
+}
+.result-tag {
+  display: inline-block;
+  background: var(--gold-light); color: var(--gold);
+  border: 1px solid rgba(201,168,108,0.3);
+  border-radius: 20px; padding: 5px 16px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+}
+
+/* ── SHOOTING TIPS ── */
+.tips-card {
+  background: white; border-radius: var(--r);
+  border: 1px solid rgba(201,168,108,0.25);
+  box-shadow: var(--shadow); overflow: hidden;
+}
+.tips-header {
+  background: linear-gradient(135deg, #fff8ee, #fff3e6);
+  padding: 12px 18px; font-size: 13px;
+  color: var(--gold); font-weight: 700;
+  border-bottom: 1px solid rgba(201,168,108,0.15);
+  display: flex; align-items: center; gap: 6px;
+}
+.tip-row {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 12px 18px; border-bottom: 1px solid rgba(180,130,110,0.07);
+  font-size: 13px; line-height: 1.7;
+}
+.tip-row:last-child { border-bottom: none; }
+.tip-num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--blush), var(--rose));
+  color: white; font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.tip-text { color: var(--text-mid); flex: 1; }
+
+/* ── SELLING CARDS ── */
+.selling-section { margin-bottom: 12px; }
+.selling-card {
+  background: white; border-radius: var(--r);
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  overflow: hidden; margin-bottom: 10px;
+}
+.selling-header {
+  padding: 16px 18px;
+  display: flex; align-items: center; gap: 12px; cursor: pointer;
+}
+.selling-icon-wrap {
+  width: 40px; height: 40px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.selling-header-text { flex: 1; }
+.selling-header-title { font-size: 15px; font-weight: 700; color: var(--brown); font-family: 'Noto Serif SC', serif; }
+.selling-header-count { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+.selling-chevron { font-size: 12px; color: var(--text-light); transition: transform 0.25s; }
+.selling-chevron.open { transform: rotate(90deg); }
+.selling-body { padding: 0 18px 16px; display: none; }
+.selling-body.open { display: block; }
+.selling-divider { height: 1px; background: var(--border); margin-bottom: 14px; }
+.point-row {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 9px 0; border-bottom: 1px solid rgba(180,130,110,0.08);
+  font-size: 13px; line-height: 1.7; color: var(--text-mid);
+}
+.point-row:last-child { border-bottom: none; padding-bottom: 0; }
+.point-dot { color: var(--rose); font-size: 16px; line-height: 1.4; flex-shrink: 0; }
+
+/* ── DOUYIN SCRIPT ── */
+.script-card {
+  background: linear-gradient(135deg, #2a1a1a, #1a1015);
+  border-radius: var(--r);
+  padding: 20px 20px 18px;
+  margin-bottom: 12px;
+  position: relative; overflow: hidden;
+}
+.script-card::before {
+  content: ''; position: absolute; top: -30px; right: -30px;
+  width: 100px; height: 100px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,133,106,0.2), transparent);
+}
+.script-top {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+}
+.script-badge {
+  background: rgba(212,133,106,0.2); color: var(--blush);
+  border: 1px solid rgba(212,133,106,0.3);
+  border-radius: 20px; padding: 4px 12px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+}
+.copy-script-btn {
+  margin-left: auto;
+  background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px; padding: 5px 14px;
+  font-size: 11px; cursor: pointer; font-family: inherit;
+  transition: all 0.2s;
+}
+.copy-script-btn:active { background: rgba(255,255,255,0.2); }
+.script-text {
+  font-size: 14px; line-height: 1.9; color: rgba(255,255,255,0.88);
+  white-space: pre-wrap;
+}
+
+/* ── ACTION BTNS ── */
+.action-row {
+  display: flex; gap: 10px; margin-top: 6px;
+}
+.action-btn {
+  flex: 1; padding: 14px 10px;
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--r-sm); color: var(--brown);
+  font-family: inherit; font-size: 13px; font-weight: 600;
+  cursor: pointer; text-align: center; box-shadow: var(--shadow);
+  transition: all 0.2s;
+}
+.action-btn:active { opacity: 0.75; }
+.action-btn.primary {
+  background: linear-gradient(135deg, var(--rose), var(--deep-rose));
+  border-color: transparent; color: white;
+  box-shadow: 0 6px 20px rgba(180,80,60,0.3);
+}
+
+/* ── LOADING ── */
+.loading-overlay {
+  display: none; position: fixed; inset: 0; z-index: 999;
+  background: rgba(250,247,244,0.94);
+  flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+}
+.loading-overlay.show { display: flex; }
+.loading-flower {
+  width: 64px; height: 64px; position: relative;
+}
+.loading-flower-ring {
+  width: 100%; height: 100%; border-radius: 50%;
+  border: 3px solid var(--blush);
+  border-top-color: var(--rose);
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-center {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+}
+.loading-label {
+  font-size: 16px; color: var(--brown); font-family: 'Noto Serif SC', serif;
+  font-weight: 600;
+}
+.loading-hint { font-size: 12px; color: var(--text-light); }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 100px; left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  background: var(--brown); color: white;
+  padding: 10px 22px; border-radius: 50px;
+  font-size: 13px; font-weight: 500;
+  opacity: 0; transition: all 0.3s; pointer-events: none; z-index: 9999;
+  white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<div class="header">
+  <div class="header-eyebrow">✦ 专属助手 ✦</div>
+  <div class="header-title">小芬化妆品集合店</div>
+  <div class="header-sub">AI 卖点话术生成 · 抖音口播文案</div>
+</div>
+
+<!-- ── GREETING ── -->
+<div class="greeting-card">
+  <div class="greeting-avatar">🌸</div>
+  <div class="greeting-text">
+    <div class="greeting-name">小芬姐，你好呀～</div>
+    <div class="greeting-msg">我来帮你生成卖点话术！拍一张产品照片给我看看，我会告诉你该怎么介绍它 💕</div>
+  </div>
+</div>
+
+<!-- ── PAGE 1 ── -->
+<div id="page1" class="content">
+
+  <!-- Step dots -->
+  <div class="step-indicator">
+    <div class="step-pip active" id="pip1"></div>
+    <div class="step-pip" id="pip2"></div>
+    <div class="step-pip" id="pip3"></div>
+  </div>
+
+  <!-- Upload -->
+  <div class="section-title">第一步 · 拍个产品照片</div>
+  <div class="upload-area" id="uploadArea" onclick="document.getElementById('mainInput').click()">
+    <div class="upload-icon-wrap">📷</div>
+    <div class="upload-main-text">点这里拍照 / 选相册</div>
+    <div class="upload-sub-text">拍正面清晰图效果最好<br>包装盒、产品正面都可以</div>
+    <img class="upload-preview" id="mainPreview" />
+    <button class="reshot-btn" id="reshotBtn" style="display:none" onclick="event.stopPropagation(); document.getElementById('mainInput').click()">重新拍</button>
+  </div>
+  <input type="file" id="mainInput" accept="image/*" capture="environment">
+
+  <!-- Detect result -->
+  <div class="detect-bubble" id="detectBubble">
+    <div class="detect-bubble-top">
+      <div class="detect-icon-big" id="detectEmoji">📦</div>
+      <div class="detect-info">
+        <div class="detect-product-name" id="detectName">识别中…</div>
+        <div class="detect-product-type" id="detectType"></div>
+      </div>
+      <div class="detect-tag">已识别</div>
+    </div>
+  </div>
+
+  <!-- Guide from AI (like a chat bubble) -->
+  <div class="guide-bubble" id="guideBubble">
+    <div class="guide-bubble-avatar">🌸</div>
+    <div class="guide-bubble-content">
+      <div class="guide-bubble-name">小芬助手</div>
+      <div class="guide-bubble-text" id="guideText"></div>
+    </div>
+  </div>
+
+  <!-- Extra photo -->
+  <div class="extra-upload" id="extraUpload" onclick="document.getElementById('extraInput').click()">
+    <div class="extra-icon" id="extraIcon">📸</div>
+    <div class="extra-label" id="extraLabel">点这里补充照片</div>
+    <div class="extra-sub" id="extraSub">这样可以帮你生成更好的卖点</div>
+    <img class="extra-preview" id="extraPreview" />
+  </div>
+  <input type="file" id="extraInput" accept="image/*" capture="environment">
+  <div class="skip-text" id="skipText" onclick="startGenerate()">暂时跳过，直接生成 →</div>
+
+  <!-- Voice input -->
+  <div class="section-title" style="margin-top:20px;">第二步 · 告诉我你知道的（选填）</div>
+  <div class="voice-section">
+    <div class="voice-card">
+      <div class="voice-card-top">
+        <div class="voice-hint">
+          比如品牌、价格、正在做什么活动……<br>
+          <span style="color:var(--rose)">点麦克风</span>说给我听，或者直接打字
+        </div>
+        <button class="mic-btn" id="micBtn" onclick="toggleMic()">🎤</button>
+      </div>
+      <textarea class="voice-textarea" id="voiceText" placeholder="例：这是XX品牌的水光面膜，主打补水，现在买二送一…"></textarea>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── PAGE 2: RESULTS ── -->
+<div id="page2" class="content">
+
+  <div class="result-hero">
+    <span class="result-emoji" id="resultEmoji">✨</span>
+    <div class="result-name" id="resultName"></div>
+    <span class="result-tag" id="resultTag"></span>
+  </div>
+
+  <div id="shootingTipsBox" style="display:none;margin-bottom:14px;">
+    <div class="section-title" style="margin-top:0;margin-bottom:10px;">📸 拍摄小技巧</div>
+    <div class="tips-card">
+      <div class="tips-header">
+        <span>小芬姐，这样拍效果更好卖！</span>
+      </div>
+      <div id="shootingTipsList"></div>
+    </div>
+  </div>
+  <div id="cardsContainer"></div>
+
+  <div class="script-card" id="scriptCard">
+    <div class="script-top">
+      <div class="script-badge">🎵 抖音口播</div>
+      <button class="copy-script-btn" onclick="copyScript()">复制文案</button>
+    </div>
+    <div class="script-text" id="scriptText"></div>
+  </div>
+
+  <div class="action-row">
+    <button class="action-btn" onclick="resetAll()">🔄 重新分析</button>
+    <button class="action-btn primary" onclick="copyAll()">📋 复制全部</button>
+  </div>
+
+</div>
+
+<!-- ── BOTTOM BAR ── -->
+<div class="bottom-bar" id="bottomBar">
+  <button class="generate-btn" id="genBtn" onclick="startGenerate()" disabled>
+    ✨ 开始生成卖点话术
+  </button>
+</div>
+
+<!-- ── LOADING ── -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-flower">
+    <div class="loading-flower-ring"></div>
+    <div class="loading-center">🌸</div>
+  </div>
+  <div class="loading-label">正在为你生成…</div>
+  <div class="loading-hint" id="loadingHint">识别产品类型中</div>
+</div>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── STATE ──
+let mainB64 = null, extraB64 = null, detectedCat = null;
+let recog = null, isRec = false;
+
+const CAT = {
+  sunglasses:  { e:'🕶️', label:'墨镜 / 眼镜',    guide:`小芬姐，识别到这是一副墨镜！\n\n戴上它再拍一张好不好？上脸效果是最打动买家的，看到实际效果他们会更想买 😊`, extraIcon:'🤳', extraLabel:'戴上拍个上脸效果', extraSub:'展示佩戴效果，转化率更高', need:true },
+  cosmetics:   { e:'💄', label:'彩妆 / 护肤品',  guide:`小芬姐，这是一款护肤或彩妆产品！\n\n现在买家很关心成分～能不能翻到成分表那面再拍一张？有了成分，我可以帮你说得更专业、更有说服力 🔬`, extraIcon:'🧪', extraLabel:'翻过来拍成分表', extraSub:'成分表能大大提升买家信任感', need:true },
+  haircare:    { e:'🧴', label:'洗发 / 护发品',  guide:`小芬姐，这是洗发护发类产品！\n\n买家最关心有没有硅油、会不会刺激头皮，你能帮我拍一下配料表吗？这样我能帮你介绍得更专业 🌿`, extraIcon:'🧪', extraLabel:'拍一下配料/成分表', extraSub:'告诉买家成分，更放心购买', need:true },
+  bodycare:    { e:'🛁', label:'沐浴乳 / 身体护理', guide:`小芬姐，这是沐浴护肤类产品！\n\n方便的话帮我拍一下配料表吗？买家看到成分会更放心，我也能帮你生成更有说服力的话术 🌸`, extraIcon:'🌿', extraLabel:'拍配料/成分表', extraSub:'展示成分，提升购买信心', need:true },
+  clothing:    { e:'👗', label:'服饰 / 睡衣',    guide:`小芬姐，这是衣服类产品！\n\n穿上拍一张给我看好不好？买家最想看的就是上身效果，真实的穿搭图比平铺图有效多了 💃`, extraIcon:'🪞', extraLabel:'穿上拍上身效果图', extraSub:'上身效果是服装最强卖点', need:true },
+  accessories: { e:'💍', label:'耳环 / 项链 / 首饰', guide:`小芬姐，这是首饰配件！\n\n戴上拍一张好不好？首饰上脸 / 上身的效果图特别能打动买家，直接让她们想象自己戴上的样子 💖`, extraIcon:'✨', extraLabel:'戴上拍佩戴效果图', extraSub:'佩戴效果图成交率翻倍', need:true },
+  bag:         { e:'👜', label:'包包',           guide:`小芬姐，这是一款包包！\n\n能帮我再拍一张包内部结构或品牌细节吗？展示做工和细节，买家会觉得更值 👌`, extraIcon:'🔍', extraLabel:'拍包内部/细节', extraSub:'细节展示提升品质感', need:true },
+  appliance:   { e:'💇', label:'美发工具 / 电器', guide:null, need:false },
+  warmer:      { e:'🌡️', label:'暖宝宝 / 取暖',  guide:null, need:false },
+  pad:         { e:'🌸', label:'卫生巾 / 生理期',guide:null, need:false },
+  daily:       { e:'🏠', label:'日用品',          guide:null, need:false },
+  other:       { e:'📦', label:'产品',            guide:null, need:false }
+};
+
+// ── FILE HANDLERS ──
+document.getElementById('mainInput').addEventListener('change', async e => {
+  const f = e.target.files[0]; if (!f) return;
+  mainB64 = await toB64(f);
+  const img = document.getElementById('mainPreview');
+  img.src = mainB64; img.classList.add('show');
+  const area = document.getElementById('uploadArea');
+  area.classList.add('has-photo');
+  document.getElementById('reshotBtn').style.display = 'block';
+  area.querySelector('.upload-icon-wrap').style.display = 'none';
+  area.querySelector('.upload-main-text').style.display = 'none';
+  area.querySelector('.upload-sub-text').style.display = 'none';
+  document.getElementById('genBtn').disabled = false;
+  setPip(2);
+  await quickDetect();
+});
+
+document.getElementById('extraInput').addEventListener('change', async e => {
+  const f = e.target.files[0]; if (!f) return;
+  extraB64 = await toB64(f);
+  const p = document.getElementById('extraPreview');
+  p.src = extraB64; p.classList.add('show');
+  document.getElementById('skipText').style.display = 'none';
+  document.getElementById('genBtn').disabled = false;
+  setPip(3);
+});
+
+function toB64(file) {
+  return new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(file); });
+}
+
+function setPip(n) {
+  ['pip1','pip2','pip3'].forEach((id, i) => {
+    const el = document.getElementById(id);
+    el.className = 'step-pip' + (i+1 < n ? ' done' : i+1 === n ? ' active' : '');
+  });
+}
+
+// ── QUICK DETECT ──
+async function quickDetect() {
+  showLoading('正在识别产品类型…');
+  try {
+    const data = mainB64.split(',')[1];
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514', max_tokens:150,
+        messages:[{ role:'user', content:[
+          { type:'image', source:{ type:'base64', media_type:'image/jpeg', data } },
+          { type:'text', text:'识别产品类型，只返回JSON不要其他文字：{"category":"sunglasses|cosmetics|haircare|bodycare|clothing|accessories|bag|appliance|warmer|pad|daily|other","name":"具体产品名"}' }
+        ]}]
+      })
+    });
+    const json = await res.json();
+    const txt = (json.content?.[0]?.text||'{}').replace(/`{3}json|`{3}/g,'').trim();
+    const parsed = JSON.parse(txt);
+    detectedCat = parsed.category || 'other';
+    const cfg = CAT[detectedCat] || CAT.other;
+
+    document.getElementById('detectEmoji').textContent = cfg.e;
+    document.getElementById('detectName').textContent = parsed.name || cfg.label;
+    document.getElementById('detectType').textContent = cfg.label;
+    document.getElementById('detectBubble').classList.add('show');
+
+    if (cfg.need && cfg.guide) {
+      document.getElementById('guideText').textContent = cfg.guide;
+      document.getElementById('guideBubble').classList.add('show');
+      document.getElementById('extraIcon').textContent = cfg.extraIcon;
+      document.getElementById('extraLabel').textContent = cfg.extraLabel;
+      document.getElementById('extraSub').textContent = cfg.extraSub;
+      document.getElementById('extraUpload').classList.add('show');
+      document.getElementById('skipText').style.display = 'block';
+      document.getElementById('genBtn').disabled = true;
+    }
+  } catch(e) { detectedCat = 'other'; }
+  hideLoading();
+}
+
+// ── GENERATE ──
+async function startGenerate() {
+  if (!mainB64) { toast('先拍一张产品照片哦～'); return; }
+  document.getElementById('bottomBar').style.display = 'none';
+  showLoading('小芬助手正在分析产品…');
+  const hints = ['提炼核心卖点中…','生成适合抖音的文案…','最后润色中…'];
+  let hi = 0;
+  const t = setInterval(()=>{ document.getElementById('loadingHint').textContent = hints[hi++ % hints.length]; }, 2200);
+
+  try {
+    const imgData = mainB64.split(',')[1];
+    const content = [{ type:'image', source:{ type:'base64', media_type:'image/jpeg', data:imgData }}];
+    if (extraB64) content.push({ type:'image', source:{ type:'base64', media_type:'image/jpeg', data:extraB64.split(',')[1]}});
+    const extra = document.getElementById('voiceText').value.trim();
+    const cfg = CAT[detectedCat||'other'];
+
+    content.push({ type:'text', text:`分析产品卖点。${extra?'销售员补充：'+extra:''}${extraB64 ? (detectedCat==='cosmetics'||detectedCat==='haircare'||detectedCat==='bodycare'?'第二张是成分表，请重点分析成分。':'第二张是上身/佩戴效果图，请结合分析。') : ''}只返回JSON不要其他文字。` });
+
+    const sys = [
+      "你是小芬化妆品集合店的专属AI销售顾问，目标客群是35-55岁的中年女性。",
+      "",
+      "【最重要原则：功能性第一】",
+      "每条卖点必须先说清楚这个产品能帮你解决什么问题，功能是核心，其他都是辅助。",
+      "不要只说好看、时尚、漂亮这种空话，要说：这个功能 → 解决了什么问题 → 带来什么好处。",
+      "错误示范：设计时尚，颜色好看",
+      "正确示范：单肩斜挎两用，上班背单肩显干练，周末逛街换斜挎解放双手，一个包顶两个用",
+      "错误示范：补水保湿效果好",
+      "正确示范：早上涂上去，到下午脸都不会紧绷，特别适合在空调房里皮肤容易干的姐妹",
+      "错误示范：面料柔软舒适",
+      "正确示范：棉料的，贴着皮肤一点都不刮，晚上睡觉翻来覆去也不闷热，更年期容易燥热的姐妹特别适合",
+      "",
+      "【受众特征】35-55岁中年妈妈：",
+      "关心实不实用、值不值钱、买了会不会后悔。",
+      "爱听能解决自己烦恼的：背东西腰酸、皮肤暗沉、头发少、身材走样、睡不好。",
+      "不喜欢英文、学名、参数数字。大白话最打动她们，要有生活感。",
+      "",
+      "【卖点结构】每条话术必须包含三层：",
+      "第一层：这个功能是什么（一句话说清楚）",
+      "第二层：解决了什么烦恼或带来什么好处",
+      "第三层：适合什么场景或什么人",
+      "",
+      "【口播文案】小芬姐真人出镜，拿着产品对着手机说：",
+      "前3秒：一句话戳中痛点，让中年妈妈停下来看。比如：姐妹们注意啦！你是不是也有这个烦恼？这个我用了真后悔买晚了。",
+      "中间：重点讲功能解决了什么问题，有画面感，像跟老朋友唠嗑。",
+      "结尾：简单促单，比如：喜欢的姐妹赶紧拿，现在买真的划算。",
+      "全程大白话，180字以内，读出来顺口自然。",
+      "禁止用词：科技感、高端、品质、卓越、臻品、精致、赋能。",
+      "",
+      "【拍摄建议】小芬姐用手机拍，必须零道具能做到：",
+      "只说怎么站、往哪站、对什么光、背景选哪里。",
+      "例：站在窗边背对窗户，光打在脸上自然好看，不用买补光灯。",
+      "例：背景选家里白墙，人往后退一步，背景自动虚化。",
+      "绝对不出现：摆花、放道具、布置场景这类操作。",
+      "",
+      "产品范围：日用品、护肤品、彩妆、洗发水、沐浴乳、卫生巾、服饰、睡衣、首饰、耳环、项链、包包、吹风机、暖宝宝等。",
+      "",
+      "返回格式（严格JSON，不含任何其他文字）：",
+      JSON.stringify({
+        productName:"具体产品名",category:"品类名",emoji:"代表emoji",
+        shootingTips:[{tip:"手机就能做到的拍摄建议，说清楚怎么站怎么拍"},{tip:"第二条"},{tip:"第三条"}],
+        sellingPoints:[{title:"卖点维度名",icon:"emoji",bg:"浅色背景色十六进制",points:["功能是什么加解决什么烦恼加适合什么场景，三层逻辑，大白话，每条40字以上"]}],
+        douyinScript:"真人出镜口播文案，前3秒痛点开场，中间说功能解决了什么问题要有画面感，结尾促单，大白话顺口，换行分段，180字以内"
+      }),
+      "",
+      "卖点维度（功能性维度必须排第一个）：",
+      "包包类：核心功能与背法 / 收纳能力 / 适合场合 / 材质耐用 / 颜值穿搭",
+      "服饰睡衣：核心功能与面料 / 上身感受 / 适合人群 / 穿搭场景 / 遮肉显瘦",
+      "护肤彩妆：解决皮肤问题 / 使用方法与感受 / 适合肤质 / 持久效果 / 性价比",
+      "首饰：设计功能与用途 / 适合场合 / 搭配建议 / 材质 / 上身效果",
+      "电器工具：核心功能 / 解决什么烦恼 / 使用效果 / 安全省心 / 操作简单",
+      "通用：核心功能与用途 / 解决什么烦恼 / 适合人群 / 好用在哪 / 值不值买"
+    ].join("\n");
+
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ model:'claude-sonnet-4-20250514', max_tokens:1000, system:sys, messages:[{ role:'user', content }]})
+    });
+    const json = await resp.json();
+    const txt = (json.content?.[0]?.text||'{}').replace(/`{3}json|`{3}/g,'').trim();
+    const result = JSON.parse(txt);
+    clearInterval(t); hideLoading();
+    renderResult(result);
+  } catch(e) {
+    clearInterval(t); hideLoading();
+    toast('出了点问题，再试一次？');
+    document.getElementById('bottomBar').style.display = 'flex';
+  }
+}
+
+function renderResult(d) {
+  document.getElementById('resultEmoji').textContent = d.emoji||'✨';
+  document.getElementById('resultName').textContent = d.productName||'产品分析';
+  document.getElementById('resultTag').textContent = d.category||'商品';
+
+  const con = document.getElementById('cardsContainer'); con.innerHTML = '';
+  (d.sellingPoints||[]).forEach((s,i) => {
+    const card = document.createElement('div');
+    card.className = 'selling-card';
+    card.innerHTML = `
+      <div class="selling-header" onclick="toggleCard(this)">
+        <div class="selling-icon-wrap" style="background:${s.bg||'#fdeee6'}">${s.icon||'✦'}</div>
+        <div class="selling-header-text">
+          <div class="selling-header-title">${s.title}</div>
+          <div class="selling-header-count">${(s.points||[]).length} 个卖点</div>
+        </div>
+        <div class="selling-chevron ${i===0?'open':''}">▶</div>
+      </div>
+      <div class="selling-body ${i===0?'open':''}">
+        <div class="selling-divider"></div>
+        ${(s.points||[]).map(p=>`<div class="point-row"><div class="point-dot">◆</div><div>${p}</div></div>`).join('')}
+      </div>`;
+    con.appendChild(card);
+  });
+
+  // Shooting tips
+  const tipsBox = document.getElementById('shootingTipsBox');
+  const tipsList = document.getElementById('shootingTipsList');
+  tipsList.innerHTML = '';
+  if (d.shootingTips && d.shootingTips.length) {
+    d.shootingTips.forEach((t, i) => {
+      const div = document.createElement('div');
+      div.className = 'tip-row';
+      div.innerHTML = '<div class="tip-num">' + (i+1) + '</div><div class="tip-text">' + t.tip + '</div>';
+      tipsList.appendChild(div);
+    });
+    tipsBox.style.display = 'block';
+  }
+
+  document.getElementById('scriptText').textContent = d.douyinScript||'';
+  window._rd = d;
+
+  document.getElementById('page1').style.display = 'none';
+  document.getElementById('page2').style.display = 'block';
+  document.getElementById('bottomBar').style.display = 'none';
+
+  document.querySelector('.greeting-msg').textContent = '搞定啦小芬姐！话术和文案都在下面，直接复制去用吧 🎉';
+  window.scrollTo(0,0);
+}
+
+function toggleCard(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.selling-chevron');
+  body.classList.toggle('open'); arrow.classList.toggle('open');
+}
+
+// ── MIC ──
+function toggleMic() {
+  if (!('webkitSpeechRecognition' in window||'SpeechRecognition' in window)){toast('浏览器不支持语音，请手动输入');return;}
+  if (isRec){ recog?.stop(); return; }
+  const SR = window.SpeechRecognition||window.webkitSpeechRecognition;
+  recog = new SR(); recog.lang='zh-CN'; recog.continuous=true; recog.interimResults=true;
+  recog.onstart = ()=>{ isRec=true; document.getElementById('micBtn').classList.add('recording'); };
+  recog.onend = ()=>{ isRec=false; document.getElementById('micBtn').classList.remove('recording'); };
+  recog.onresult = e=>{ let t=''; for(let i=e.resultIndex;i<e.results.length;i++) t+=e.results[i][0].transcript; document.getElementById('voiceText').value=t; };
+  recog.start();
+}
+
+// ── UTILS ──
+function showLoading(hint){ document.getElementById('loadingHint').textContent=hint; document.getElementById('loadingOverlay').classList.add('show'); }
+function hideLoading(){ document.getElementById('loadingOverlay').classList.remove('show'); }
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500); }
+function copyScript(){ navigator.clipboard.writeText(document.getElementById('scriptText').textContent).then(()=>toast('✅ 口播文案已复制')); }
+function copyAll(){
+  const d=window._rd; if(!d) return;
+  let t=`【${d.productName}】卖点话术\n\n`;
+  (d.sellingPoints||[]).forEach(s=>{ t+=`▍${s.title}\n`; (s.points||[]).forEach(p=>{ t+=`  ◆ ${p}\n`; }); t+='\n'; });
+  t+=`▍抖音口播文案\n${d.douyinScript}`;
+  navigator.clipboard.writeText(t).then(()=>toast('✅ 全部内容已复制'));
+}
+function resetAll(){
+  mainB64=null; extraB64=null; detectedCat=null;
+  ['mainPreview','extraPreview'].forEach(id=>{ const el=document.getElementById(id); el.src=''; el.classList.remove('show'); });
+  document.getElementById('uploadArea').classList.remove('has-photo');
+  document.getElementById('reshotBtn').style.display='none';
+  ['upload-icon-wrap','upload-main-text','upload-sub-text'].forEach(c=>{ document.querySelector('.'+c).style.display=''; });
+  document.getElementById('detectBubble').classList.remove('show');
+  document.getElementById('guideBubble').classList.remove('show');
+  document.getElementById('extraUpload').classList.remove('show');
+  document.getElementById('skipText').style.display='none';
+  document.getElementById('voiceText').value='';
+  document.getElementById('mainInput').value='';
+  document.getElementById('extraInput').value='';
+  document.getElementById('genBtn').disabled=true;
+  document.getElementById('page2').style.display='none';
+  document.getElementById('page1').style.display='block';
+  document.getElementById('bottomBar').style.display='flex';
+  document.querySelector('.greeting-msg').textContent='我来帮你生成卖点话术！拍一张产品照片给我看看，我会告诉你该怎么介绍它 💕';
+  setPip(1); window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
